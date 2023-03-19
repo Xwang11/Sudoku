@@ -6,15 +6,21 @@ class Board:
         self.board = board
 
     def __str__(self):
-        boardString = ""
-        for x in range(0,9):
-            for y in range(0.9):
-                boardString = boardString + board[x][y]
-            boardString = boardString + "\n"
+        boardString = "\n"
+        for i in range(0,9):
+            boardString = boardString + "{a} {b} {c} | {d} {e} {f} | {g} {h} {i} \n".format(
+                a=self.board[i][0], 
+                b=self.board[i][1],
+                c=self.board[i][2],
+                d=self.board[i][3],
+                e=self.board[i][4],
+                f=self.board[i][5],
+                g=self.board[i][6],
+                h=self.board[i][7],
+                i=self.board[i][8],)
+            if (i==2 or i==5):
+                boardString = boardString + ("------  ------  ------\n")
         return boardString
 
     def printBoard(self):
-        for i in range(0,9):
-            print(f"{board[i][0]} {board[i][1]} {board[i][2]} | {board[i][3]} {board[i][4]} {board[i][5]} | {board[i][6]} {board[i][7]} {board[i][8]} ")
-            if (i==2 or i==5):
-                print("------------------------------")
+        print(self.__str__())
