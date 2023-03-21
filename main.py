@@ -1,6 +1,7 @@
-from board import Board
-
+from boardNew import Board
+from solver import Solver
 b = Board()
+s = Solver()
 
 # Easy problem
 m = [[9,2,0,0,0,5,8,0,0],
@@ -25,9 +26,14 @@ n = [[0,2,0,0,1,0,0,8,0],
      [8,0,0,0,0,9,0,0,0],
      [0,0,9,0,2,0,5,0,6]]
 
-b.importBoard(m)
+b.setBoard(m)
+
+s.solve(b, 0, 0)
+
 b.printBoard()
-b.solve()
-b.printBoard()
+
+
+
+
 
 

@@ -25,7 +25,10 @@ class Board:
             if (i==2 or i==5):
                 boardString = boardString + ("------  ------  ------\n")
         return boardString
-
+    
+    def getBoard(self):
+            return self.board
+    
     def printBoard(self):
         print(self.__str__())
 
@@ -71,6 +74,7 @@ class Board:
                     valid = False
         
         return valid
+    
     # checks if board is complete
     def checkComplete(self):
         for x in range(0,9):
@@ -79,26 +83,47 @@ class Board:
                     return False
         return True
     
-    def solve(self):
-        while True:
-            self.printBoard()
-            for x in range(0,9):
-                for y in range(0,9):
-                    if self.board[x][y] == 0:
-                        list = self.validValues[(x,y)]
+    # def solve(self):
+        # while True:
+        #     self.printBoard()
+        #     for x in range(0,9):
+        #         for y in range(0,9):
+        #             if self.board[x][y] == 0:
+        #                 list = self.validValues[(x,y)]
 
-                        for i in range(1,10):
-                            valid = self.checkValid(x, y, i)
-                            if valid:
-                                if i not in list:
-                                    list.append(i)
-                            elif not valid:
-                                if i in list:
-                                    list.remove(i)
+        #                 for i in range(1,10):
+        #                     valid = self.checkValid(x, y, i)
+        #                     if valid:
+        #                         if i not in list:
+        #                             list.append(i)
+        #                     elif not valid:
+        #                         if i in list:
+        #                             list.remove(i)
                             
-                            #print(f"x={x}, y={y}, i={i}, valid={valid}, list={list}")
-                        if len(list) == 1:
-                            self.board[x][y] = list[0]
+        #                     #print(f"x={x}, y={y}, i={i}, valid={valid}, list={list}")
+        #                 if len(list) == 1:
+        #                     self.board[x][y] = list[0]
                             
-            if self.checkComplete():
-                break
+        #     if self.checkComplete():
+        #         break
+
+
+    #Using backtracing
+    
+    def solve(self, x, y):
+        self.printBoard
+        if x==8 and y==8:
+            print("Completed")
+            return True
+        
+        elif self.board[x][y] == 0:
+            for i in range(1,10):
+                if self.checkValid(x,y,i):
+                    self.board[x][y] = i
+                    x=x+1
+                    print(f"{i} solves the space. Calling solve({x}, {y}), which is {self.board[x][y]}")
+                    self.solve(x,y)
+        else:
+            print("Not a blank space, Incrementing")
+            x=x+1
+            self.solve(x,y)
