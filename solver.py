@@ -34,8 +34,8 @@ class Solver:
                 return False
         
         # Check box BROKEN
-        for y in range(self.roundBox(i), self.roundBox(i) + 2):
-            for x in range(self.roundBox(j), self.roundBox(j)+2):
+        for y in range(self.roundBox(i), self.roundBox(i) + 3):
+            for x in range(self.roundBox(j), self.roundBox(j)+3):
                 if b[y][x] == k:
                     return False
         

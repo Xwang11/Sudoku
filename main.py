@@ -39,13 +39,13 @@ n = [[0,2,0,0,1,0,0,8,0],
 
 start = time.perf_counter()
 b.setBoard(n)
-print(s.roundBox(8))
 s.solve(b, 0, 0)
 end = time.perf_counter()
 print(end-start)
-# b.printBoard()
+b.printBoard()
 
 
 
 
 
+#012 345 678
