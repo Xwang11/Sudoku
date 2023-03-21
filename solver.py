@@ -63,7 +63,8 @@ class Solver:
                     else:
                         i = i+1
                     
-                    return self.solve(board,i,j)
+                    if self.solve(board,i,j):
+                        return self.solve(board,i,j)
             return False
 
         else:
@@ -73,4 +74,6 @@ class Solver:
                 i=1
             else:
                 i=i+1
-            return self.solve(board, i, j)
+            if self.solve(board,i,j):
+                        return self.solve(board,i,j)
+            return False
