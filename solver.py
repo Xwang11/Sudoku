@@ -43,11 +43,11 @@ class Solver:
     
     
     def solve(self,board, i, j):
-        print(f"Now checking ({i}, {j})")
         board.printBoard()
         b=board.getBoard()
+        print(f"Now checking ({i}, {j}) that has value {b[i][j]}")
 
-        if i >= 8 and j >= 8 and b[8][8] != 0:
+        if (i == 8) and (j == 8) and (b[i][j] != 0):
             print("Complete")
             return True
         
@@ -57,21 +57,24 @@ class Solver:
                     print(f"({i}, {j}) can be solved with {k}")   
                     b[i][j] = k
                     board.setBoard(b)
+                    if i==8 and j==8:
+                        return True
                     if i==8:
-                        j=j+1
-                        i=1
+                        jNew=j+1
+                        iNew=0
                     else:
-                        i = i+1
+                        iNew = i+1
+                        jNew = j
                     
-                    if self.solve(board,i,j):
-                        return self.solve(board,i,j)
+                    if self.solve(board,iNew,jNew) == False:
+                        b[i][j] = 0
             return False
 
         else:
             print(f"({i}, {j}) is not a blank space, incrementing")   
             if i==8:
                 j=j+1
-                i=1
+                i=0
             else:
                 i=i+1
             if self.solve(board,i,j):
