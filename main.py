@@ -30,8 +30,6 @@ b.setBoard(m)
 
 s.solve(b, 0, 0)
 
-b.printBoard()
-
 
 
 

@@ -19,6 +19,7 @@ class Solver:
 
         return answer
     
+
     def checkValid(self,board, i, j, k):
         b=board.getBoard()
 
@@ -40,12 +41,13 @@ class Solver:
         
         return True
     
+    
     def solve(self,board, i, j):
-        board.printBoard()
         print(f"Now checking ({i}, {j})")
+        board.printBoard()
         b=board.getBoard()
 
-        if i == 8 and j == 8:
+        if i >= 8 and j >= 8 and b[8][8] != 0:
             print("Complete")
             return True
         
@@ -61,7 +63,8 @@ class Solver:
                     else:
                         i = i+1
                     
-                    self.solve(board,i,j)
+                    return self.solve(board,i,j)
+            return False
 
         else:
             print(f"({i}, {j}) is not a blank space, incrementing")   
@@ -70,4 +73,4 @@ class Solver:
                 i=1
             else:
                 i=i+1
-            self.solve(board, i, j)
+            return self.solve(board, i, j)
